@@ -1,1 +1,3 @@
 // Start hacking!
+
+alert("hello");
