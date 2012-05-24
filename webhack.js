@@ -25,6 +25,17 @@ function clear() {
   c.fillRect(0, 0, width, height);
 }
 
+function soundPlayer(url, copies) {
+  var audios = [], index = 0;
+  for (var i = 0; i < copies; i++) audios.push(new Audio(url));
+  return function () {
+    audios[index].play();
+    index = (index + 1) % copies
+  }
+}
+
+bang = soundPlayer("audio/silencer.wav", 2);
+
 var i = 0;
 function animate() {
   clear();
@@ -34,6 +45,7 @@ function animate() {
 
 var started = false;
 window.addEventListener("click", function () {
+  bang();
   if (!started) { started = true; animate(); }
 });
 
